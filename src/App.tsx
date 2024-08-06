@@ -1,9 +1,9 @@
-function App() {
+const App = () => {
   return (
     <>
-      <h1 className="text-3xl">Todo</h1>
+      <h1 className="text-3xl">Todos</h1>
     </>
   );
-}
+};
 
 export default App;
