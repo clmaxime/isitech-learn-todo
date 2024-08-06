@@ -10,7 +10,7 @@ export const Input: FC<Props> = (props) => {
 
   return (
     <input
-      className="outline outline-1 outline-black -outline-offset-1 rounded text-base p-2"
+      className="rounded p-2 text-base outline outline-1 -outline-offset-1 outline-gray-400"
       type="text"
       onChange={onChange}
       value={value}

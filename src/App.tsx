@@ -12,11 +12,11 @@ const App = () => {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState<Array<Todo>>([]);
 
-  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const updateInputValue: ChangeEventHandler<HTMLInputElement> = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleButtonClick = () => {
+  const addNewTodo = () => {
     const newTodosValue = [
       ...todos,
       {
@@ -31,8 +31,8 @@ const App = () => {
     console.log("todos", newTodosValue);
   };
 
-  const handleTodoChange = (
-    changedTodoIdx: number
+  const getTodoDoneToggler = (
+    changedTodoIdx: number,
   ): ChangeEventHandler<HTMLInputElement> => {
     return () => {
       const newTodosValue = todos.map((todo, idx) => ({
@@ -47,12 +47,12 @@ const App = () => {
   };
 
   return (
-    <main className="p-5 flex flex-col gap-5">
+    <main className="mx-auto flex max-w-screen-sm flex-col gap-5 p-5">
       <h1 className="text-2xl font-medium">Todo List</h1>
       <div className="flex flex-col gap-3">
         {todos.map((todo, index) => (
           <Todo
-            onCheckboxChange={handleTodoChange(index)}
+            onCheckboxChange={getTodoDoneToggler(index)}
             title={todo.title}
             done={todo.done}
             key={`${todo.title}-${index}`}
@@ -60,8 +60,8 @@ const App = () => {
         ))}
       </div>
       <div className="flex items-center gap-3">
-        <Input onChange={handleInputChange} value={inputValue} />
-        <Button onClick={handleButtonClick}>Add a todo</Button>
+        <Input onChange={updateInputValue} value={inputValue} />
+        <Button onClick={addNewTodo}>Add a todo</Button>
       </div>
     </main>
   );

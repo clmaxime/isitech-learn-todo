@@ -7,7 +7,7 @@ export const Button: FC<Props> = (props) => {
 
   return (
     <button
-      className="bg-blue-500 rounded p-3 leading-none text-white text-base"
+      className="rounded bg-blue-500 p-3 text-base leading-none text-white shadow-sm"
       onClick={onClick}
     >
       {children}
