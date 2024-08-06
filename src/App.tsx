@@ -1,6 +1,7 @@
 import { Button } from "./components/Button";
 import { Input } from "./components/Input";
-import { useState } from "react";
+import { Todo } from "./components/Todo";
+import { ChangeEventHandler, useState } from "react";
 
 type Todo = {
   title: string;
@@ -11,7 +12,7 @@ const App = () => {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState<Array<Todo>>([]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setInputValue(e.target.value);
   };
 
@@ -30,12 +31,37 @@ const App = () => {
     console.log("todos", newTodosValue);
   };
 
+  const handleTodoChange = (
+    changedTodoIdx: number
+  ): ChangeEventHandler<HTMLInputElement> => {
+    return () => {
+      const newTodosValue = todos.map((todo, idx) => ({
+        ...todo,
+        done: idx === changedTodoIdx ? !todo.done : todo.done,
+      }));
+
+      setTodos(newTodosValue);
+
+      console.log("todos", newTodosValue);
+    };
+  };
+
   return (
-    <main className="p-5">
-      <h1 className="text-2xl font-medium mb-4">Todos</h1>
+    <main className="p-5 flex flex-col gap-5">
+      <h1 className="text-2xl font-medium">Todo List</h1>
+      <div className="flex flex-col gap-3">
+        {todos.map((todo, index) => (
+          <Todo
+            onCheckboxChange={handleTodoChange(index)}
+            title={todo.title}
+            done={todo.done}
+            key={`${todo.title}-${index}`}
+          />
+        ))}
+      </div>
       <div className="flex items-center gap-3">
         <Input onChange={handleInputChange} value={inputValue} />
-        <Button onClick={handleButtonClick}>Log input value</Button>
+        <Button onClick={handleButtonClick}>Add a todo</Button>
       </div>
     </main>
   );
