@@ -2,16 +2,32 @@ import { Button } from "./components/Button";
 import { Input } from "./components/Input";
 import { useState } from "react";
 
+type Todo = {
+  title: string;
+  done: boolean;
+};
+
 const App = () => {
   const [inputValue, setInputValue] = useState("");
+  const [todos, setTodos] = useState<Array<Todo>>([]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
   const handleButtonClick = () => {
-    console.log(`Input value : ${inputValue}`);
+    const newTodosValue = [
+      ...todos,
+      {
+        title: inputValue,
+        done: false,
+      },
+    ];
+
+    setTodos(newTodosValue);
     setInputValue("");
+
+    console.log("todos", newTodosValue);
   };
 
   return (
