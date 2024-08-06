@@ -1,8 +1,11 @@
+import { Button } from "./components/Button";
+
 const App = () => {
   return (
-    <>
-      <h1 className="text-3xl">Todos</h1>
-    </>
+    <main className="p-5">
+      <h1 className="text-2xl font-medium mb-4">Todos</h1>
+      <Button onClick={() => console.log("Clicked!")}>Click me !</Button>
+    </main>
   );
 };
 
