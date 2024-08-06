@@ -1,17 +1,24 @@
 import { Button } from "./components/Button";
 import { Input } from "./components/Input";
+import { useState } from "react";
 
 const App = () => {
+  const [currentInput, setCurrentInput] = useState("");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentInput(e.target.value);
+  };
+
+  const handleButtonClick = () => {
+    console.log(`Input value : ${currentInput}`);
+  };
+
   return (
     <main className="p-5">
       <h1 className="text-2xl font-medium mb-4">Todos</h1>
       <div className="flex items-center gap-3">
-        <Input
-          onChange={(e) => {
-            console.log(e.target.value);
-          }}
-        />
-        <Button onClick={() => console.log("Clicked!")}>Click me !</Button>
+        <Input onChange={handleInputChange} />
+        <Button onClick={handleButtonClick}>Log input value</Button>
       </div>
     </main>
   );
