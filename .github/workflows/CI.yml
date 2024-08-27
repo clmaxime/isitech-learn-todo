@@ -3,12 +3,11 @@ name: Continous Integration Github Action
 on:
   push:
   pull_request:
-
 jobs:
   run-static-codebase-analysis:
     runs-on: ubuntu-latest
     steps:
-      - uses: action/checkout@v4
+      - uses: actions/checkout@v4
       - name: Install depedencies
         run: npm i
       - name: Run formatter
