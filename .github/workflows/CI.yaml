@@ -6,12 +6,12 @@ on:
 
 jobs:
   run-static-codebase-analysis:
-  runs-on: ubuntu-latest
-  steps:
-    - uses: action/checkout@v4
-    - name: Install depedencies
-      run: npm i
-    - name: Run formatter
-      run: npm run format
-    - name: Run type-check
-      run: npm run type-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@v4
+      - name: Install depedencies
+        run: npm i
+      - name: Run formatter
+        run: npm run format
+      - name: Run type-check
+        run: npm run type-check
