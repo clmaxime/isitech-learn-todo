@@ -14,3 +14,11 @@ jobs:
         run: npm run format
       - name: Run type-check
         run: npm run type-check
+
+    run-test-suite:
+      runs-on:
+      steps:
+      - uses: actions/checkout@v4
+      - name: Install depedencies
+        run: npm i
+
